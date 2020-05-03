@@ -23,6 +23,7 @@ namespace SampleApp
         {
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseNodeModules();
            
         }
     }

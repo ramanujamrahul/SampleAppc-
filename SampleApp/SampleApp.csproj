@@ -9,6 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="OdeToCode.UseNodeModules" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="wwwroot\img\SK-A-1595.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
