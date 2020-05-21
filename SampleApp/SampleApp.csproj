@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="node_modules\bootstrap\dist\css\bootstrap.css" />
+    <Content Include="node_modules\bootstrap\dist\css\bootstrap.min.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="node_modules\bootstrap\dist\css\bootstrap.min.css.map" />
+    <None Include="node_modules\bootstrap\dist\js\bootstrap.bundle.min.js" />
     <None Include="wwwroot\index.html" />
   </ItemGroup>
 

@@ -5,10 +5,12 @@
 <html>
 <head>
     <title>SampleHtml:@ViewBag.Title</title>
+
+    <link href="~/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
 </head>
 <body>
-    <header>
+    <header class="container">
         <h1>Welcome to the page</h1>
         <menu>
             <ul>
@@ -18,13 +20,18 @@
             </ul>
         </menu>
     </header>
-    <section>
+    <section class="container">
         <h1> @ViewBag.Title</h1>
         @RenderBody()
     </section>
-    <footer>Copyright 2019 page llc</footer>
+    <footer class="container">
+        <div class="text-center">
+            Copyright 2019 page llc
+        </div>
+    </footer>
 
     <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="~/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/index.js"></script>
     @RenderSection("scripts", false)
 </body>
