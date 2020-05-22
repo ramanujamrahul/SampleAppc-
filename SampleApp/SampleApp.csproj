@@ -7,11 +7,14 @@
   <ItemGroup>
     <Content Include="node_modules\bootstrap\dist\css\bootstrap.css" />
     <Content Include="node_modules\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="node_modules\font-awesome\css\font-awesome.css" />
+    <Content Include="node_modules\font-awesome\css\font-awesome.min.css" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="node_modules\bootstrap\dist\css\bootstrap.min.css.map" />
     <None Include="node_modules\bootstrap\dist\js\bootstrap.bundle.min.js" />
+    <None Include="node_modules\font-awesome\css\font-awesome.css.map" />
     <None Include="wwwroot\index.html" />
   </ItemGroup>
 

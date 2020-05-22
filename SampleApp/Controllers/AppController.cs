@@ -32,6 +32,7 @@ namespace SampleApp.Controllers
             {
                 _mailService.SendMessage("ab@gmail.com", model.Subject, $"From:{model.Name}, Message:{model.Message}");
                 ViewBag.UserMessage = "Mail Sent";
+                ModelState.Clear();
             }
 
             return View();
