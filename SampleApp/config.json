@@ -1,0 +1,8 @@
+{
+  "Colors": {
+    "Favorite": "blue"
+  },
+  "ConnectionStrings": {
+    "SampleAppConnectionString": "server=(localdb)\\ProjectsV13;Database=SampleAppDb;Integrated Security=true;MultipleActiveResultSets=true;"
+  }
+}

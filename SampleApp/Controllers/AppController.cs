@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SampleApp.Data;
 using SampleApp.Services;
 using SampleApp.ViewModels;
 using System;
@@ -11,13 +12,16 @@ namespace SampleApp.Controllers
     public class AppController : Controller
     {
         private readonly INullMailService _mailService;
+        private readonly SampleAppContext _context;
 
-        public AppController(INullMailService mailService)
+        public AppController(INullMailService mailService, SampleAppContext context)
         {
             this._mailService = mailService;
+            this._context = context;
         }
         public IActionResult Index()
         {
+            var results = _context.Products.ToList();
             return View();
         }
         [HttpGet("contact")]
@@ -41,6 +45,13 @@ namespace SampleApp.Controllers
         {
             ViewBag.Title = "About Us";
             return View();
+        }
+        public IActionResult Shop()
+        {
+            var results = _context.Products.ToList()
+                .OrderBy(p => p.Category)
+                .ToList();
+            return View(results.ToList());
         }
     }
 }
