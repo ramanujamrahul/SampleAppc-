@@ -12,16 +12,16 @@ namespace SampleApp.Controllers
     public class AppController : Controller
     {
         private readonly INullMailService _mailService;
-        private readonly SampleAppContext _context;
+        private readonly ISampleAppRepository _repository;
 
-        public AppController(INullMailService mailService, SampleAppContext context)
+
+        public AppController(INullMailService mailService, ISampleAppRepository repository)
         {
             this._mailService = mailService;
-            this._context = context;
+            this._repository = repository;
         }
         public IActionResult Index()
         {
-            var results = _context.Products.ToList();
             return View();
         }
         [HttpGet("contact")]
@@ -48,10 +48,8 @@ namespace SampleApp.Controllers
         }
         public IActionResult Shop()
         {
-            var results = _context.Products.ToList()
-                .OrderBy(p => p.Category)
-                .ToList();
-            return View(results.ToList());
+            var results = _repository.GetAllProducts();
+            return View(results);
         }
     }
 }

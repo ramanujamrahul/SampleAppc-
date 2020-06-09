@@ -4,5 +4,12 @@
   },
   "ConnectionStrings": {
     "SampleAppConnectionString": "server=(localdb)\\ProjectsV13;Database=SampleAppDb;Integrated Security=true;MultipleActiveResultSets=true;"
+
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning"
+    }
   }
 }

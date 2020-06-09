@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,6 +38,7 @@ namespace SampleApp
             services.AddRazorPages();
             services.AddTransient<INullMailService, NullMailService>();
             services.AddTransient<SampleAppSeeder>();
+            services.AddScoped<ISampleAppRepository, SampleAppRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
