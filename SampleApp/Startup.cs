@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -38,6 +40,7 @@ namespace SampleApp
             services.AddRazorPages();
             services.AddTransient<INullMailService, NullMailService>();
             services.AddTransient<SampleAppSeeder>();
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<ISampleAppRepository, SampleAppRepository>();
         }
 
