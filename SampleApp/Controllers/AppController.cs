@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SampleApp.Data;
 using SampleApp.Services;
 using SampleApp.ViewModels;
@@ -46,6 +47,7 @@ namespace SampleApp.Controllers
             ViewBag.Title = "About Us";
             return View();
         }
+        [Authorize]
         public IActionResult Shop()
         {
             var results = _repository.GetAllProducts();

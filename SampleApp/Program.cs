@@ -29,7 +29,7 @@ namespace SampleApp
             {
 
                 var seeder = scope.ServiceProvider.GetService<SampleAppSeeder>(); ;
-                seeder.Seed();
+                seeder.SeedAsync().Wait();
             }
         }
         public static IWebHost BuildWebHost(string[] args) =>

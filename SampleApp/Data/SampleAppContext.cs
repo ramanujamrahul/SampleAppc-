@@ -1,5 +1,7 @@
 ﻿using DutchTreat.Data.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SampleApp.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SampleApp.Data
 {
-    public class SampleAppContext : DbContext
+    public class SampleAppContext : IdentityDbContext<StoreUser>
     {
         public SampleAppContext(DbContextOptions<SampleAppContext> options) : base(options)
         {
