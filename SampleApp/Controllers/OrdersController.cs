@@ -2,10 +2,12 @@
 using DutchTreat.Data.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
 using SampleApp.Data;
+using SampleApp.Data.Entities;
 using SampleApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -21,19 +23,24 @@ namespace SampleApp.Controllers
         private readonly ISampleAppRepository _repository;
         private readonly ILogger<OrdersController> _logger;
         private readonly IMapper _mapper;
+        private readonly UserManager<StoreUser> _usermanager;
 
-        public OrdersController(ISampleAppRepository repository, ILogger<OrdersController> logger, IMapper mapper)
+        public OrdersController(ISampleAppRepository repository, ILogger<OrdersController> logger, IMapper mapper,
+            UserManager<StoreUser> usermanager
+            )
         {
             _repository = repository;
             _logger = logger;
             this._mapper = mapper;
+            this._usermanager = usermanager;
         }
         [HttpGet]
         public IActionResult Get(bool includeItems = true)
         {
             try
             {
-                var results = _repository.GetAllOrders(includeItems);
+                var username = User.Identity.Name;
+                var results = _repository.GetAllOrdersByUser(username, includeItems);
                 return Ok(_mapper.Map<IEnumerable<Order>, IEnumerable<OrderViewModel>>(results));
             }
             catch (Exception ex)
@@ -49,7 +56,7 @@ namespace SampleApp.Controllers
         {
             try
             {
-                var order = _repository.GetOrderById(id);
+                var order = _repository.GetOrderById(User.Identity.Name, id);
                 if (order != null)
                     return Ok(_mapper.Map<Order, OrderViewModel>(order));
                 else return NotFound();
@@ -61,7 +68,7 @@ namespace SampleApp.Controllers
             }
         }
         [HttpPost]
-        public IActionResult Post([FromBody]OrderViewModel model)
+        public async Task<IActionResult> Post([FromBody]OrderViewModel model)
         {
             //add it ot the database
             try
@@ -73,6 +80,8 @@ namespace SampleApp.Controllers
                     {
                         newOrder.OrderDate = DateTime.Now;
                     }
+                    var currentUser = await _usermanager.FindByNameAsync(User.Identity.Name);
+                    newOrder.User = currentUser;
                     _repository.AddEntity(newOrder);
                     if (_repository.SaveAll())
                     {
